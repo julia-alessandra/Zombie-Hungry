@@ -60,3 +60,13 @@ h1 {
     height: 100px;
     width: 100px;
 }
+
+#img-historico, #img-controles {
+    height: 70px;
+    width: 70px;
+}
+
+#historico, #controles {
+    border-radius: 50%;
+    box-shadow: 0 5px 0 black;
+}
