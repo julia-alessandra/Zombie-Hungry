@@ -3,6 +3,10 @@ body {
     background-size: cover;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 h1 {
     text-align: center;
 }
@@ -19,14 +23,19 @@ h1 {
     top: 80%;
     left: 5%;
 }
-#ranking {
+#historico {
     position: absolute;
-    top: 90%;
-    right: 5%;
+    top: 86%;
+    right: 11%;
 }
 
 #controles {
     position: absolute;
-    top: 93%;
-    right: 5%;
+    top: 86%;
+    right: 3%;
+}
+
+#controles, #historico {
+    height: 100px;
+    width: 100px;
 }
