@@ -18,11 +18,22 @@ h1 {
     margin-left: 40%;
 }
 
-#zumbi-menu {
+.zumbi-menu {
     position: absolute;
-    top: 80%;
-    left: 5%;
+    bottom: 0px;
+    left: 1%;
 }
+
+#zumbi {
+    width: 450px;
+    height: 450px;
+}
+
+#zumbi-sombra {
+    width: 450px;
+    height: 450px;
+}
+
 #historico {
     position: absolute;
     top: 86%;
