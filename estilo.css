@@ -13,3 +13,20 @@ h1 {
     width: 20%;
     margin-left: 40%;
 }
+
+#zumbi-menu {
+    position: absolute;
+    top: 80%;
+    left: 5%;
+}
+#ranking {
+    position: absolute;
+    top: 90%;
+    right: 5%;
+}
+
+#controles {
+    position: absolute;
+    top: 93%;
+    right: 5%;
+}
