@@ -3,6 +3,13 @@ body {
     background-size: cover;
 }
 
-h1, #botoes-principais {
+h1 {
     text-align: center;
+}
+
+#botoes-principais {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-left: 40%;
 }
