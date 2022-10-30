@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Spooky';
+    src: url('Spooky Monster.woff');
+}
+
 body {
     background-image: url(imagens/fundo.jpg);
     background-size: cover;
@@ -8,19 +13,24 @@ html, body {
 }
 
 h1 {
+    margin-top: 10px;
     text-align: center;
+    font-size: 110px;
+    font-family: 'Spooky';
+    color: rgb(221, 115, 28);
+    text-shadow: 8px 8px 10px black;
 }
 
 #botoes-principais {
     display: flex;
     flex-direction: column;
-    width: 20%;
-    margin-left: 40%;
+    width: 30%;
+    margin-left: 35%;
 }
 
 .zumbi-menu {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 1%;
 }
 
@@ -36,14 +46,14 @@ h1 {
 
 #historico {
     position: absolute;
-    top: 86%;
-    right: 11%;
+    top: 82%;
+    right: 10%;
 }
 
 #controles {
     position: absolute;
-    top: 86%;
-    right: 3%;
+    top: 82%;
+    right: 2%;
 }
 
 #controles, #historico {
