@@ -1,2 +1,12 @@
-# Simulador-de-zumbie
-Projeto criado para o TP2 da disciplina de "laboratório de programação web", feito por Júlia Alessandra, Maria Eduarda e Marina Lopes.
+# [Simulador de Zumbie](https://julia-alessandra.github.io/Simulador-de-zumbie/)
+
+> "nha" - Pou
+
+Design criado pelo [canva](https://www.canva.com/design/DAFQdKBg6hg/UuxQvWdwhVdAIkhCUjWnDw/editutm_content=DAFQdKBg6hg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+Projeto criado para o Trabalho Prático 2 da disciplina de "laboratório de programação web" do CEFET-MG.
+
+Integrantes:
+- Júlia Alessandra da Silva
+- Maria Eduarda Abecassis
+- Marina Lopes da Cruz
