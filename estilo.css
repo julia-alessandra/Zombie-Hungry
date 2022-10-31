@@ -31,10 +31,12 @@ h1 {
 
 #iniciar, #instrucoes, #criadoras {
     border-radius: 20px;
+    border: 1px solid black;
     height: 80px;
     font-size: 40px;
     box-shadow: 0 5px 0 black;
     cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #iniciar, #instrucoes {
@@ -73,6 +75,7 @@ h1 {
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    border: 1px solid black;
     box-shadow: 0 5px 0 black;
     cursor: pointer;
 }
@@ -80,4 +83,9 @@ h1 {
 #img-historico, #img-controles {
     height: 70px;
     width: 70px;
+}
+
+.botoes-principais:active, .botoes-canto:active {
+    transform: translateY(7px);
+    box-shadow: 0 2px 0 0 black;
 }
