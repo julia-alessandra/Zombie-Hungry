@@ -1,7 +1,7 @@
 @font-face {
     src: url(fonts/Spooky\ Monster.otf);
     font-family: 'Spooky Monster';    
-    font-weight: normal;
+    font-size: 130px;
 } 
 
 body {
@@ -101,17 +101,17 @@ h1 {
 }
 
 #manchaTres {
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
     position: absolute;
-    left: 19%;
-    top: 10%;
+    left: 0%;
+    top: 0%;
 }
 
 #manchaUm {
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
     position: absolute;
-    right: 35%;
-    top: 11%;
+    right: 25%;
+    bottom: 13%;
 }
