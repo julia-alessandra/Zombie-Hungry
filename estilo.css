@@ -16,7 +16,7 @@ html, body {
 h1 {
     margin-top: 10px;
     text-align: center;
-    font-size: 110px;
+    font-size: 130px;
     font-family: 'Spooky Monster';
     color: rgb(221, 115, 28);
     text-shadow: 8px 8px 10px black;
@@ -97,7 +97,6 @@ h1 {
     position: absolute;
     top: 10%;
     right: 20%;
-
 }
 
 #manchaTres {
