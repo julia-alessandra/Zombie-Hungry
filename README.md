@@ -1,4 +1,4 @@
-# [Zombie Hungry](https://julia-alessandra.github.io/Simulador-de-zumbie/)
+# [Zombie Hungry](https://julia-alessandra.github.io/Zombie-Hungry/)
 
 > "nha" - Pou
 
