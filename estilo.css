@@ -6,11 +6,15 @@
 
 body {
     background-image: url(imagens/fundo-tp2.jpg);
+
     background-size: cover;
+    
 }
 
 html, body {
     overflow: hidden;
+    min-height: 100%;
+
 }
 
 h1 {
@@ -84,6 +88,7 @@ h1 {
 #img-historico, #img-controles {
     height: 70px;
     width: 70px;
+    text-align: center;
 }
 
 .botoes-principais:active, .botoes-canto:active {
@@ -91,10 +96,12 @@ h1 {
     box-shadow: 0 2px 0 0 black;
 }
 
+#manchaUm, #manchaDois, #manchaTres{
+    position: absolute;
+}
 #manchaDois {
     width: 80px;
     height: 80px;
-    position: absolute;
     top: 10%;
     right: 20%;
 }
@@ -102,7 +109,6 @@ h1 {
 #manchaTres {
     width: 150px;
     height: 150px;
-    position: absolute;
     left: 0%;
     top: 0%;
 }
@@ -110,7 +116,6 @@ h1 {
 #manchaUm {
     width: 120px;
     height: 120px;
-    position: absolute;
     right: 25%;
     bottom: 13%;
 }
