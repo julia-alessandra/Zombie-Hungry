@@ -9,4 +9,4 @@ Projeto criado para o Trabalho Prático 2 da disciplina de "laboratório de prog
 Integrantes:
 - Júlia Alessandra da Silva
 - Maria Eduarda Abecassis
-- Marina Lopes da Cruz
+- Marina Lopes da Cruz Araújo
