@@ -1,67 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estilos/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="imagens/zumbi.png">
     <title>Zombie Hungry</title>
 </head>
+
 <body>
-    <div id="cabecalho">
-        <h1>Zombie Hungry</h1>
-    </div>
-    <div id="main">
-        <div id="botoes-principais">
-            <button id="iniciar" class="botoes-principais">INICIAR</button>
-            <button id="instrucoes" class="botoes-principais">INSTRUÇÕES</button>
-            <button id="criadoras" class="botoes-principais">CRIADORAS</button>
-        </div>
-        <div id="botoes-canto">
-            <button id="historico" class="botoes-canto"><img id="img-historico"src="imagens/historico.png"></button>
-            <button id="controles" class="botoes-canto"><img id="img-controles" src="imagens/engrenagem.png"></button>
-        </div>
-        <div class="zumbi-menu">
-            <div class="zumbi-menu">
-                <img id="zumbi" src="imagens/zumbi.png">
+
+    <h1>Zombie Hungry</h1>
+    <nav>
+
+        <button>
+            <p><a href="jogo.html""><i class=" fa fa-play" aria-hidden="true"></i> Iniciar</a></p>
+        </button>
+
+        <button class="botao">
+            <p><i class="fa fa-question-circle" aria-hidden="true"></i> Ajuda</p>
+        </button>
+        <button class="botao">
+            <p><i class="fa fa-trophy" aria-hidden="true"></i>Ranking</p>
+        </button>
+    </nav>
+
+    <section id="ajuda" class="invisivel">
+        <button id="fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <h3>Instruções do jogo</h3>
+        <p>
+            Rain, he wanted it comfortable
+            I wanted that pain
+            He wanted a bride
+            I was making my own name
+            Chasing that fame
+            He stayed the same
+            All of me changed like midnight
+        </p>
+    </section>
+
+    <section id="ranking" class="invisivel">
+        <button id="fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <h3>Ranking</h3>
+        <p>Essas foram suas melhores pontuações!</p>
+        <p>
+        <div id="nota1">0000</div>
+        <div id="nota2">0000</div>
+        <div id="nota3">0000</div>
+        </p>
+    </section>
+
+    <img src="imagens/zumbi-sombra.png" id="zombie-sombra">
+    <img src="imagens/zumbi.png" id="zombie">
+
+    <footer>
+        <button class="botao"><i class="fa fa-group" aria-hidden="true"></i></button>
+        <button class="botao"><i class="fa fa-cog" aria-hidden="true"></i></button>
+    </footer>
+
+    <section id="criadoras" class="invisivel">
+        <button id="fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <h3>Criadoras</h3>
+
+        <div id="apresentacoes">
+
+            <div id="Julia">
+                <img src="imagens/zumbi.png">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu mattis purus. Curabitur
+                    accumsan in eros sit amet
+                    scelerisque. Morbi tempus suscipit dui at sagittis. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Nunc
+                    vulputate mauris dignissim scelerisque condimentum. In condimentum interdum dui hendrerit
+                    ornare. Maecenas porttitor
+                    auctor ex rutrum malesuada. Donec sed lacinia urna, sit amet iaculis massa. Integer at enim
+                    sagittis, gravida tortor
+                    sed, efficitur lacus.
+                </p>
             </div>
-            <img id="zumbi-sombra" src="imagens/zumbi-sombra.png">
-        </div>
-        <div id="manchas">
-            <img id="manchaUm" src="imagens/red-splatter-1.png">
-            <img id="manchaDois" src="imagens/red-splatter-2.png">
-            <img id="manchaTres" src="imagens/red-splatter-3.png">
-        </div>
-    </div>
-
-    <main id="secao-ajuda" class="invisivel">
-        <main id="menu-ajuda">
-            <div id="contem-fechar-ajuda">
-                <button id="fechar-instrucoes"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <div id="marina">
+                <img src="imagens/zumbi.png">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu mattis purus. Curabitur
+                    accumsan in eros sit amet
+                    scelerisque. Morbi tempus suscipit dui at sagittis. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Nunc
+                    vulputate mauris dignissim scelerisque condimentum. In condimentum interdum dui hendrerit
+                    ornare. Maecenas porttitor
+                    auctor ex rutrum malesuada. Donec sed lacinia urna, sit amet iaculis massa. Integer at enim
+                    sagittis, gravida tortor
+                    sed, efficitur lacus.
+                </p>
             </div>
+            <div id="duda">
+                <img src="imagens/zumbi.png">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu mattis purus. Curabitur
+                    accumsan in eros sit amet
+                    scelerisque. Morbi tempus suscipit dui at sagittis. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Nunc
+                    vulputate mauris dignissim scelerisque condimentum. In condimentum interdum dui hendrerit
+                    ornare. Maecenas porttitor
+                    auctor ex rutrum malesuada. Donec sed lacinia urna, sit amet iaculis massa. Integer at enim
+                    sagittis, gravida tortor
+                    sed, efficitur lacus.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="configurar" class="invisivel">
+        <button id="fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <h3>Configurações</h3>
+            <p>
+                Fusce ultricies, velit et fringilla sollicitudin, magna ligula aliquet augue, a tincidunt neque eros
+                quis lorem. Mauris lobortis vitae enim eu dictum. Donec malesuada massa nec rutrum gravida. Pellentesque
+                tellus mauris, ornare et ante ac, consequat dignissim metus. Morbi congue hendrerit diam, in placerat
+                elit ultrices vitae. Duis a dignissim elit, ac volutpat ligula. Donec congue lorem eget egestas
+                molestie. Aliquam bibendum elit eget sapien tincidunt, et convallis metus consectetur. Nullam eu lacinia
+                lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam nisi nibh, sodales vitae
+                tortor eget
+            </p>
 
-            <section id="container-instrucoes">
-                <h3>Instruções</h3>
-            </section>
+    </section>
 
-            <section id="container-criadoras">
-                <h3>Criadoras</h3>
-                <div id="julia">
-                    <p>julinha</p>
-                </div>
-                <div id="duda">
-                    <p>Meu nome é Maria Eduarda, tenho 13 anos e sou a aluna mais jovem do CEFET. 
-                        Minha matéria favorita é educação física e eu adoro Naruto. Gravo vídeos 
-                    de Subway Surfers para o YouTube. <a href="https://www.youtube.com/channel/UC5C_b5j6_CGxwF86mzvapCQ">Se inscrevam, pfvr.</a>
-                    </p>
-                </div>
-                <div id="marina">
-                    <p>sim</p>
-                </div>
-            </section>
-
-        </main>
-        <script src="javascript/botoes.js"></script>
+    <script src="script/index.js"></script>
 </body>
+
 </html>
