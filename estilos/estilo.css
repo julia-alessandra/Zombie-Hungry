@@ -4,12 +4,11 @@
     font-size: 100%;
 }
 
-main {
-    background-image: url(imagens/fundo-tp2.jpg);
-    background-size: cover;
-}
-
 body {
+    background-image: url(imagens/fundo-tp2.png);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: cover;
     overflow: hidden;
     min-height: 100%;
 }
@@ -25,11 +24,6 @@ h1 {
 
 .invisivel {
     display: none;
-}
-
-.fundo-escuro{
-    background-color: black;
-    opacity:0.5;
 }
 
 a:link, a:visited, a:hover, a:active{
@@ -98,13 +92,13 @@ footer>button{
 /**-------------------- CONTAINER --------------------**/
 
 #criadoras, #ajuda, #ranking, #configurar{
-    background-color: rgb(221, 115, 28);
     position: absolute;
-    top: 25%;
+    top: 15%;
     text-align: center;
     margin-right: 10%;
     margin-left:10%;
 }
+
 #apresentacoes{
     display: flex;
     flex-direction: row;
@@ -114,5 +108,16 @@ footer>button{
 #julia, #marina, #duda{
     padding-left: 1%;
     padding-right: 1%;
-    
+    padding-top: 1%;
+    text-align:center;
+    font-size: 110%;
+    background-color: white;
+    margin: 1%;
+    border-radius: 3%;
+    box-shadow: 8px 8px 10px black;
+}
+#imagem-criadoras{
+    width: 50%;
+    border-radius: 50%;
+    border: 2px black solid;
 }
