@@ -6,12 +6,12 @@
 
 body {
     background-image: url(imagens/fundo-tp2.png);
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: cover;
-    overflow: hidden;
-    min-height: 100%;
-}
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+      overflow: hidden;
+      min-height: 100%;
+  }
 
 h1 {
     margin-top: 0.5%;
@@ -91,14 +91,16 @@ footer>button{
 }
 /**-------------------- CONTAINER --------------------**/
 
-#criadoras, #ajuda, #ranking, #configurar{
+#criadoras, #ajuda, #ranking,#configurar{
     position: absolute;
-    top: 15%;
+}
+
+#criadoras{
     text-align: center;
     margin-right: 10%;
     margin-left:10%;
+    top: 15%;
 }
-
 #apresentacoes{
     display: flex;
     flex-direction: row;
@@ -120,4 +122,33 @@ footer>button{
     width: 50%;
     border-radius: 50%;
     border: 2px black solid;
+}
+
+#configurar{
+    text-align: center;
+    width: 50%;
+    height: 80%;
+    margin-right: 20%;
+    margin-left:20%;
+    top: 5%;
+    background-color: white;
+    padding: 2%;
+}
+
+#perfil{
+    float: left;
+    border: 1px black solid;
+    height: 70%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 10%;
+    padding-top: 5%;
+    margin-right: 2%;
+    
+}
+
+#perfilZombie{
+    width: 70%;
+    background-color: rgb(6, 83, 3);
+    border-radius: 50%;
 }
