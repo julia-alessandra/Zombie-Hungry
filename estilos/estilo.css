@@ -5,10 +5,6 @@
 }
 
 body {
-    background-image: url(imagens/fundo-tp2.png);
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: cover;
       overflow: hidden;
       min-height: 100%;
   }
