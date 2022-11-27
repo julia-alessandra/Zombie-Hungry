@@ -14,6 +14,9 @@ let terceiraPergunta = document.querySelector("#terceira");
 let quartaPergunta = document.querySelector("#quarta");
 let quintaPergunta = document.querySelector("#quinta");
 
+let body = document.querySelector("body");
+body.style.backgroundImage = "url(imagens/fundo-tp2.png)";
+
 //começo
 for (let i = 0; i < inicio.length; i++)
   inicio[i].addEventListener("click", function () {
