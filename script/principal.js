@@ -48,7 +48,7 @@ for (let i = 0; i < botaoEl.length; i++) {
 let nomeEl = document.querySelector("#nome")
 let nomeInput = document.querySelector("#nomeInput")
 
-nomeInput.addEventListener("keyup", (e) => {
+nomeInput.addEventListener("keyup", () => {
   nomeEl.innerHTML = nomeInput.value
 })
 
@@ -70,3 +70,7 @@ let hasan = document.querySelector("#hasan")
 let peralta = document.querySelector("#peralta")
 let taylor = document.querySelector("#taylor")
 
+imagemPrincipal.addEventListener("click", function () {
+    if(imagemPrincipal.src = personagens[5].value)
+  window.location.href = "Ovo.html";
+})
