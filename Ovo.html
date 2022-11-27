@@ -20,9 +20,11 @@
         <div id="simnao"><button id="escolher">SIM</button><button id="escolher">NÃO</button></div>
     </main>
 
+    <img src="imagens/zumbi-sombra.png" id="zombie-sombra">
+    <img src="imagens/ZombieTaylor.png" id="zombie-taylor">
 
     <section id="primeira" class="invisivel">
-        <p>O que é mais importante?</p>
+        <p id="escolhas">O que é mais importante?</p>
         <button id="primeiraEscolha">Ter um amor pra viver o resto da vida</button>
         <button id="primeiraEscolha">Construir uma boa reputação</button>
         <button id="primeiraEscolha">Realizar sonhos profissionais</button>
@@ -31,7 +33,7 @@
     </section>
 
     <section id="segunda" class="invisivel">
-        <p>Se você descobre uma traição, o que você faria?</p>
+        <p id="escolhas">Se você descobre uma traição, o que você faria?</p>
         <button id="segundaEscolha">Chora</button>
         <button id="segundaEscolha">Trai a pessoa também</button>
         <button id="segundaEscolha">Parte pra outra</button>
@@ -40,7 +42,7 @@
     </section>
 
     <section id="terceira" class="invisivel">
-        <p>Quando você precisa falar sobre seus sentimentos</p>
+        <p id="escolhas">Quando você precisa falar sobre seus sentimentos</p>
         <button id="terceiraEscolha">Sou um livro aberto, amo falar sobre o que estou sentindo</button>
         <button id="terceiraEscolha">Mando indiretas, se a carapuça servir...</button>
         <button id="terceiraEscolha">Só fala com quem confia</button>
@@ -49,7 +51,7 @@
     </section>
 
     <section id="quarta" class="invisivel">
-        <p>Escolha uma cor</p>
+        <p id="escolhas">Escolha uma cor</p>
         <button id="quartaEscolha">Vermelho</button>
         <button id="quartaEscolha">Lilás</button>
         <button id="quartaEscolha">Rosa</button>
@@ -58,7 +60,7 @@
     </section>
 
     <section id="quinta" class="invisivel">
-        <p>Escolha uma frase da Taylor</p>
+        <p id="escolhas">Escolha uma frase da Taylor</p>
         <button id="quintaEscolha">"Não tenho nada na minha cabeça"</button>
         <button id="quintaEscolha">"Foda-se o patriarcado"</button>
         <button id="quintaEscolha">"Eu estou bem brilhante"</button>
@@ -68,28 +70,28 @@
 
     <div id="album1" class="invisivel">
         <h2>Reputation</h2>
-        <p>
+        <p class="albuns">
             Você se preocupa com o que os outros pensam e gosta de ser admirada(o), mas mantém o ar misterioso pra criar
             um charme. Seu lema é não levar desaforo pra casa. Ninguém vai tirar seu brilho com fofocas e mentirinhas.
         </p>
     </div>
     <div id="album2" class="invisivel">
         <h2>Fearless</h2>
-        <p>
+        <p class="albuns">
             A princesa que a Disney não tem: você é do tipo que acredita em contos de fadas, final feliz e amor à
             primeira vista. Seu álbum da Taylor Swift é Fearless — romântico e fofo como nenhum outro.
         </p>
     </div>
     <div id="album3" class="invisivel">
         <h2>Lover</h2>
-        <p>
+        <p class="albuns">
             Você é madura(o), sabe usar a empatia, mas também sabe curtir a vida com leveza. Nada é mais importante do
             que sua paz interior. Seu álbum é Lover!
         </p>
     </div>
     <div id="album4" class="invisivel">
         <h2>folklore</h2>
-        <p>
+        <p class="albuns">
             Assim como o álbum folklore, você faz o estilo mais alternativo, diferente, que não se importa em seguir os
             padrões. Sonhador(a) e sempre com mil ideias para realizar, sua vibe não permite tempo ruim e ninguém
             consegue tirar seu sono.
@@ -97,11 +99,10 @@
     </div>
 
     <div id="fim" class="invisivel">
-        <p>Gostou do resultado? Volte para a página incial ou escute uma música do albúm recebido</p>
-        <button id="voltar">Voltar</button>
+        <p id="p-fim">Gostou do resultado? Volte para a página incial ou escute uma música do albúm recebido</p>
         <button id="ouvir">Escutar</button>
+        <button id="voltar">Voltar</button>
     </div>
-
 
     <script src="script/EasterEgg.js"></script>
 </body>
