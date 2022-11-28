@@ -1,12 +1,16 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
+const barreiraMap = [];
+for (let i = 0; i < barreiraNum.length; i += 70) {
+  barreiraMap.push(barreiraNum.slice(i, 70 + i));
+}
+
 const batalhaMap = [];
 for (let i = 0; i < batalhas.length; i += 70) {
   batalhaMap.push(batalhas.slice(i, 70 + i));
 }
 
-//console.log(batalhaMap);
 
 class barreira {
   static width = 38;
@@ -22,15 +26,30 @@ class barreira {
   }
 }
 const zonaBatalha = [];
+const muralhas = []
 
 const off = {
-  x: -1,
-  y: -70,
+  x: -125,
+  y: -200,
 };
+
+barreiraMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 672 || symbol ===29311)
+      muralhas.push(
+        new barreira({
+          posicao: {
+            x: j * barreira.width + off.x,
+            y: i * barreira.height + off.y,
+          },
+        })
+      );
+  });
+});
 
 batalhaMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
-    if (symbol === 27989)
+    if (symbol === 672)
       zonaBatalha.push(
         new barreira({
           posicao: {
@@ -41,6 +60,7 @@ batalhaMap.forEach((row, i) => {
       );
   });
 });
+
 //imagens
 const imagem = new Image();
 imagem.src = "./jogo/map.png";
@@ -49,10 +69,19 @@ const jogador = new Image();
 jogador.src = "./jogo/playerDown.png";
 
 class sprite {
-  constructor({ posicao, velocidade, imagem }) {
+  constructor({ posicao, velocidade, imagem, frames = {max: 1} }) {
     this.posicao = posicao;
     this.imagem = imagem;
+    this.frames = frames
+
+    this.imagem.onload = () => {
+      this.width = this.imagem.width / this.frames.max
+      this.height = this.imagem.height
+      console.log(this.width)
+      console.log(this.height)
+    }
   }
+
   draw() {
     c.drawImage(this.imagem, this.posicao.x, this.posicao.y);
   }
@@ -82,21 +111,31 @@ const botoes = {
   },
 };
 
-const movimento = [fundo, ...zonaBatalha];
+const movimento = [fundo, ...muralhas,...zonaBatalha];
 
-function colisaoRetangulo({ retangulo1, retangulo2 }) {
+function colisaoRetangulo({ rectangle1, rectangle2 }) {
   return (
-    retangulo1.posicao.x + retangulo1.width >= retangulo2.posicao.x &&
-    retangulo1.posicao.x <= retangulo2.posicao.x + retangulo2.width &&
-    retangulo1.posicao.y <= retangulo2.posicao.y + retangulo1.height &&
-    retangulo1.posicao.y + retangulo1.height >= retangulo2.posicao.y
+    rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
+    rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
+    rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
+    rectangle1.position.y + rectangle1.height >= rectangle2.position.y
   );
 }
+
+const teste = new barreira({
+  posicao:{
+    x: -125,
+    y: -200
+  }
+})
 //as barreiras estap seguindo o personagem, n sei arrumar
 function animacao() {
   window.requestAnimationFrame(animacao);
   fundo.draw();
-  //teste.draw()
+  muralhas.forEach((muralha) => {
+    muralha.draw()
+  })
+  teste.draw()
   c.drawImage(
     jogador,
     0,
@@ -105,28 +144,28 @@ function animacao() {
     jogador.height,
     canvas.width / 2,
     canvas.height / 2,
-    //não sei se isso é pixel, se for eu me mato
     30,
     40
   );
 
 
-  for(let i=0; i<zonaBatalha.length; i++){
-    const batalhaZona = zonaBatalha(i)
+  zonaBatalha.forEach((zonaDeBatalha) => {
+    zonaDeBatalha.draw();
+  });
+
+  for(let i = 0; i > zonaBatalha.length; i++){
+    const zonaDeBatalha = zonaBatalha[i]
     if(
       colisaoRetangulo({
-        retangulo1:jogador,
-        retangulo2: batalhaZona
+        rectangle1: jogador,
+        rectangle2: zonaDeBatalha
       })
-    ){
-      movimento = false
+    ) {
+      console.log('colisao');
       break
     }
   }
 
-  zonaBatalha.forEach((zonaBatalha) => {
-    zonaBatalha.draw();
-  });
   //para o personagem andar, eu estou alterando a posicao do fundo!!!!
   if (botoes.arrowDown.pressed && ultimo === "ArrowDown") {
     movimento.forEach((movimento) => {
