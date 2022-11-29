@@ -1,3 +1,4 @@
+
 //Oi hasan, espero que ache esse codigo legal, nos finalmente aprendemos(de verdade) a mexer no canvas e é bem divertido(e assustador)
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
@@ -50,21 +51,21 @@ class jogador {
 
 class Projectile {
   //particula que atira
-  constructor({posicao, velocidade}){
+  constructor({ posicao, velocidade }) {
     this.posicao = posicao
     this.velocidade = velocidade
     this.radius = 3
   }
 
-  draw(){
+  draw() {
     c.beginPath() //inicia um novo desenho
-    c.arc(this.posicao.x, this.posicao.y, this.radius, 0, Math.PI*2) //faz um arco circular no desenho do cerebro
+    c.arc(this.posicao.x, this.posicao.y, this.radius, 0, Math.PI * 2) //faz um arco circular no desenho do cerebro
     c.fillStyle = 'red'
     c.fill()
     c.closePath()//fecha o desenho
   }
 
-  up(){
+  up() {
     //unidade popular
     //brincadeira, é updade mesmo
     this.draw()
@@ -75,7 +76,7 @@ class Projectile {
 
 class comida {
   //apenas uma imagem!!!!
-  constructor({posicao}) {
+  constructor({ posicao }) {
     this.velocidade = {
       x: 0,
       y: 0
@@ -100,12 +101,12 @@ class comida {
         this.imagem,
         this.posicao.x,
         this.posicao.y,
-        this.width /10,
-        this.height/10
+        this.width / 10,
+        this.height / 10
       );
   }
 
-  update({velocidade}) {
+  update({ velocidade }) {
     if (this.imagem) {
       this.draw();
       this.posicao.x += velocidade.x;
@@ -116,14 +117,14 @@ class comida {
 
 class Conjunto {
   //Conjunto de todas as imagens juntas
-  constructor(){
+  constructor() {
     this.posicao = {
       x: 0,
-      y:0
+      y: 0
     }
     this.velocidade = {
       x: 3,
-      y:0
+      y: 0
     }
     this.almoco = []
 
@@ -133,25 +134,25 @@ class Conjunto {
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min) + min);
     }
-    
-    let numeroColunas = getRandomInt(1, 5);
-    let numeroLinhas = getRandomInt(3, 8);
 
-    this.width = numeroColunas *90
+    let numeroColunas = getRandomInt(5, 8);
+    let numeroLinhas = getRandomInt(4, 8);
 
-    for(let i =0; i<numeroLinhas; i++){
-      for(let j = 0; j<numeroColunas; j++)
-      this.almoco.push(new comida({posicao:{x:i*45, y:j*40}}))
+    this.width = numeroColunas * 90
+
+    for (let i = 0; i < numeroLinhas; i++) {
+      for (let j = 0; j < numeroColunas; j++)
+        this.almoco.push(new comida({ posicao: { x: i * 45, y: j * 40 } }))
     }
     console.log(this.almoco)
   }
-  update(){
+  update() {
     this.posicao.x += this.velocidade.x
     this.posicao.y += this.velocidade.y
 
     this.velocidade.y = 0
-    
-    if(this.posicao.x + this.width >= canvas.width || this.posicao.x <= 0){
+
+    if (this.posicao.x + this.width >= canvas.width || this.posicao.x <= 0) {
       this.velocidade.x = -this.velocidade.x
       this.velocidade.y = 30
     }
@@ -160,7 +161,7 @@ class Conjunto {
 
 const zombie = new jogador();
 const projectiles = []
-const conjuntos = [new Conjunto]
+const conjuntos = []
 
 //andar
 const botoes = {
@@ -175,6 +176,9 @@ const botoes = {
   }
 };
 
+let frames = 0
+let intervalo = Math.floor((Math.random() * 500) + 500)
+
 function animacao() {
   requestAnimationFrame(animacao);
   c.fillStyle = 'green'//cor de fundo
@@ -185,39 +189,69 @@ function animacao() {
     projectile.up()
   })
 
-  conjuntos.forEach(Conjunto => {
-    Conjunto.update()
-    Conjunto.almoco.forEach((cerebro) => {
-      cerebro.update({velocidade: Conjunto.velocidade})
+  conjuntos.forEach((conjunto) => {
+    conjunto.update()
+    conjunto.almoco.forEach((cerebro, i) => {
+      cerebro.update({ velocidade: conjunto.velocidade })
+
+      projectiles.forEach((projectile, j) => {
+        if(
+          projectile.posicao.y - projectile.radius <= cerebro.posicao.y + cerebro.height &&
+          projectile.posicao.x + projectile.radius >= cerebro.posicao.x &&
+          projectile.posicao.x - projectile.radius <= cerebro.posicao.x &&
+          projectile.posicao.y + projectile.radius <= cerebro.posicao.y){
+          setTimeout(() => {
+            const invasor = conjunto.almoco.find(invasor2 => {
+             invasor2 === cerebro
+            })
+
+            const particula2 = projectiles.find(
+              invasor2 => invasor2 === projectiles
+            )
+
+            if(invasor && particula2){
+              conjunto.almoco.splice(i, 1)
+            projectiles.splice(j, 1)
+            }
+          },0)
+        }
+      })
     })
   })
-  
-//andar
-if(botoes.arrowLeft.pressed && zombie.posicao.x >= 0){
-  zombie.velocidade.x = -5
-}
-else if(botoes.arrowRight.pressed && zombie.posicao.x + zombie.width <= canvas.width){
-  zombie.velocidade.x = 5
-}
-else{
-  zombie.velocidade.x = 0
-}
+
+  //andar
+  if (botoes.arrowLeft.pressed && zombie.posicao.x >= 0) {
+    zombie.velocidade.x = -5
+  }
+  else if (botoes.arrowRight.pressed && zombie.posicao.x + zombie.width <= canvas.width) {
+    zombie.velocidade.x = 5
+  }
+  else {
+    zombie.velocidade.x = 0
+  }
+
+  if (frames % intervalo === 0) {
+    conjuntos.push(new Conjunto())
+  }
+  frames++
 
 }
 animacao();
 
+
+
 //evento de andar
-addEventListener("keydown", ({key}) => {
+addEventListener("keydown", ({ key }) => {
   switch (key) {
     case " ":
       projectiles.push(new Projectile({
-        posicao:{
-          x:zombie.posicao.x +50,
-          y:zombie.posicao.y -10
+        posicao: {
+          x: zombie.posicao.x + 50,
+          y: zombie.posicao.y - 10
         },
-        velocidade:{
-          x:0,
-          y:-5
+        velocidade: {
+          x: 0,
+          y: -5
         }
       }))
       break;
@@ -230,7 +264,7 @@ addEventListener("keydown", ({key}) => {
   }
 });
 
-addEventListener("keyup", ({key}) => {
+addEventListener("keyup", ({ key }) => {
   switch (key) {
     case " ":
       console.log("aaaa")
