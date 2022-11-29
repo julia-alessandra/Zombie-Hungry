@@ -1,4 +1,3 @@
-
 //Oi hasan, espero que ache esse codigo legal, nos finalmente aprendemos(de verdade) a mexer no canvas e é bem divertido(e assustador)
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
@@ -201,18 +200,8 @@ function animacao() {
           projectile.posicao.x - projectile.radius <= cerebro.posicao.x &&
           projectile.posicao.y + projectile.radius <= cerebro.posicao.y){
           setTimeout(() => {
-            const invasor = conjunto.almoco.find(invasor2 => {
-             invasor2 === cerebro
-            })
-
-            const particula2 = projectiles.find(
-              invasor2 => invasor2 === projectiles
-            )
-
-            if(invasor && particula2){
-              conjunto.almoco.splice(i, 1)
+            conjunto.almoco.splice(i, 1)
             projectiles.splice(j, 1)
-            }
           },0)
         }
       })
