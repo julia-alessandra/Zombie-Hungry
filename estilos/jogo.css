@@ -15,3 +15,20 @@ body{
     background-color: black;
     color: white;
 }
+
+.animacao{
+    animation: descendo .5s ease-in-out 0s infinite alternate;
+}
+
+@keyframes descendo {
+    from { top: 0;     }
+    to   { top: -200px; }
+}
+
+.invisivel {
+    display: none;
+}
+
+#personagem{
+    position: absolute;
+}

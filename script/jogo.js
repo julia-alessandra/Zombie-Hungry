@@ -1,228 +1,183 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
-const barreiraMap = [];
-for (let i = 0; i < barreiraNum.length; i += 70) {
-  barreiraMap.push(barreiraNum.slice(i, 70 + i));
-}
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-const batalhaMap = [];
-for (let i = 0; i < batalhas.length; i += 70) {
-  batalhaMap.push(batalhas.slice(i, 70 + i));
-}
+class jogador {
+  constructor() {
+    this.velocidade = {
+      x: 0,
+      y: 0
+    };
 
 
-class barreira {
-  static width = 38;
-  static height = 38;
-  constructor({ posicao }) {
-    this.posicao = posicao;
-    this.width = 38;
-    this.height = 38;
+    const imagem = new Image();
+    imagem.src = "./jogo/playerDown.png";
+    imagem.onload = () => {
+      this.imagem = imagem;
+      this.width = imagem.width;
+      this.height = imagem.height;
+      this.posicao = {
+        x: canvas.width / 2,
+        y: canvas.height / 2 + 200,
+      };
+    };
   }
   draw() {
-    c.fillStyle = "pink";
-    c.fillRect(this.posicao.x, this.posicao.y, this.width, this.height);
+    if (this.imagem)
+      c.drawImage(
+        this.imagem,
+        this.posicao.x,
+        this.posicao.y,
+        this.width,
+        this.height
+      );
   }
-}
-const zonaBatalha = [];
-const muralhas = []
 
-const off = {
-  x: -125,
-  y: -200,
-};
-
-barreiraMap.forEach((row, i) => {
-  row.forEach((symbol, j) => {
-    if (symbol === 672 || symbol ===29311)
-      muralhas.push(
-        new barreira({
-          posicao: {
-            x: j * barreira.width + off.x,
-            y: i * barreira.height + off.y,
-          },
-        })
-      );
-  });
-});
-
-batalhaMap.forEach((row, i) => {
-  row.forEach((symbol, j) => {
-    if (symbol === 672)
-      zonaBatalha.push(
-        new barreira({
-          posicao: {
-            x: j * barreira.width + off.x,
-            y: i * barreira.height + off.y,
-          },
-        })
-      );
-  });
-});
-
-//imagens
-const imagem = new Image();
-imagem.src = "./jogo/map.png";
-
-const jogador = new Image();
-jogador.src = "./jogo/playerDown.png";
-
-class sprite {
-  constructor({ posicao, velocidade, imagem, frames = {max: 1} }) {
-    this.posicao = posicao;
-    this.imagem = imagem;
-    this.frames = frames
-
-    this.imagem.onload = () => {
-      this.width = this.imagem.width / this.frames.max
-      this.height = this.imagem.height
-      console.log(this.width)
-      console.log(this.height)
+  update() {
+    if (this.imagem) {
+      this.draw();
+      this.posicao.x += this.velocidade.x;
     }
   }
+}
 
-  draw() {
-    c.drawImage(this.imagem, this.posicao.x, this.posicao.y);
+class Projectile {
+  constructor({posicao, velocidade}){
+    this.posicao = posicao
+    this.velocidade = velocidade
+    this.radius = 3
+  }
+
+  draw(){
+    c.beginPath()
+    c.arc(this.posicao.x, this.posicao.y, this.radius, 0, Math.PI*2)
+    c.fillStyle = 'black'
+    c.fill()
+    c.closePath()
+  }
+
+  up(){
+    this.draw()
+    this.posicao.x += this.velocidade.x
+    this.posicao.y += this.velocidade.y
   }
 }
 
-const fundo = new sprite({
-  posicao: {
-    //essa posição é onde o personagem vai começar
-    x: off.x,
-    y: off.y,
-  },
-  imagem: imagem,
-});
+class comida {
+  constructor() {
+    this.velocidade = {
+      x: 0,
+      y: 0
+    };
+
+
+    const imagem = new Image();
+    imagem.src = "./jogo/cerebro.png";
+    imagem.onload = () => {
+      this.imagem = imagem;
+      this.width = imagem.width;
+      this.height = imagem.height;
+      this.posicao = {
+        x: canvas.width / 2,
+        y: canvas.height /2 - 300,
+      };
+    };
+  }
+  draw() {
+    if (this.imagem)
+      c.drawImage(
+        this.imagem,
+        this.posicao.x,
+        this.posicao.y,
+        this.width /6,
+        this.height/6
+      );
+  }
+
+  update() {
+    if (this.imagem) {
+      this.draw();
+      this.posicao.x += this.velocidade.x;
+      this.posicao.y += this.velocidade.y;
+    }
+  }
+}
+
+const zombie = new jogador();
+const projectiles = []
+const cerebro = new comida()
 
 const botoes = {
-  arrowUp: {
-    pressed: false,
-  },
-  arrowDown: {
+  arrowLeft: {
     pressed: false,
   },
   arrowRight: {
     pressed: false,
   },
-  arrowLeft: {
+  space: {
     pressed: false,
-  },
+  }
 };
 
-const movimento = [fundo, ...muralhas,...zonaBatalha];
+function animacao() {
+  requestAnimationFrame(animacao);
+  c.fillStyle = 'green'
+  c.fillRect(0, 0, canvas.width, canvas.height)
+  cerebro.update();
+  zombie.update();
+  projectiles.forEach(projectile => {
+    projectile.up()
+  })
+  
 
-function colisaoRetangulo({ rectangle1, rectangle2 }) {
-  return (
-    rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
-    rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
-    rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
-    rectangle1.position.y + rectangle1.height >= rectangle2.position.y
-  );
+if(botoes.arrowLeft.pressed && zombie.posicao.x >= 0){
+  zombie.velocidade.x = -5
+}
+else if(botoes.arrowRight.pressed && zombie.posicao.x + zombie.width <= canvas.width){
+  zombie.velocidade.x = 5
+}
+else{
+  zombie.velocidade.x = 0
 }
 
-const teste = new barreira({
-  posicao:{
-    x: -125,
-    y: -200
-  }
-})
-//as barreiras estap seguindo o personagem, n sei arrumar
-function animacao() {
-  window.requestAnimationFrame(animacao);
-  fundo.draw();
-  muralhas.forEach((muralha) => {
-    muralha.draw()
-  })
-  teste.draw()
-  c.drawImage(
-    jogador,
-    0,
-    0,
-    jogador.width / 4,
-    jogador.height,
-    canvas.width / 2,
-    canvas.height / 2,
-    30,
-    40
-  );
-
-
-  zonaBatalha.forEach((zonaDeBatalha) => {
-    zonaDeBatalha.draw();
-  });
-
-  for(let i = 0; i > zonaBatalha.length; i++){
-    const zonaDeBatalha = zonaBatalha[i]
-    if(
-      colisaoRetangulo({
-        rectangle1: jogador,
-        rectangle2: zonaDeBatalha
-      })
-    ) {
-      console.log('colisao');
-      break
-    }
-  }
-
-  //para o personagem andar, eu estou alterando a posicao do fundo!!!!
-  if (botoes.arrowDown.pressed && ultimo === "ArrowDown") {
-    movimento.forEach((movimento) => {
-      movimento.posicao.y -= 3;
-    });
-  } else if (botoes.arrowUp.pressed && ultimo === "ArrowUp") {
-    movimento.forEach((movimento) => {
-      movimento.posicao.y += 3;
-    });
-  } else if (botoes.arrowRight.pressed && ultimo === "ArrowRight") {
-    movimento.forEach((movimento) => {
-      movimento.posicao.x -= 3;
-    });
-  } else if (botoes.arrowLeft.pressed && ultimo === "ArrowLeft") {
-    movimento.forEach((movimento) => {
-      movimento.posicao.x += 3;
-    });
-  }
 }
 animacao();
 
-window.addEventListener("keydown", (e) => {
-  switch (e.key) {
-    case "ArrowUp":
-      botoes.arrowUp.pressed = true;
-      ultimo = "ArrowUp";
-      break;
-    case "ArrowDown":
-      botoes.arrowDown.pressed = true;
-      ultimo = "ArrowDown";
+addEventListener("keydown", ({key}) => {
+  switch (key) {
+    case " ":
+      projectiles.push(new Projectile({
+        posicao:{
+          x:zombie.posicao.x +50,
+          y:zombie.posicao.y -10
+        },
+        velocidade:{
+          x:0,
+          y:-5
+        }
+      }))
       break;
     case "ArrowRight":
-      botoes.arrowRight.pressed = true;
-      ultimo = "ArrowRight";
+      botoes.arrowRight.pressed = true
       break;
     case "ArrowLeft":
-      botoes.arrowLeft.pressed = true;
-      ultimo = "ArrowLeft";
+      botoes.arrowLeft.pressed = true
       break;
   }
-  //console.log(botoes);
 });
 
-let ultimo; //isso é pra apertar duas ao mesmo tempo
-window.addEventListener("keyup", (e) => {
-  switch (e.key) {
-    case "ArrowUp":
-      botoes.arrowUp.pressed = false;
-      break;
-    case "ArrowDown":
-      botoes.arrowDown.pressed = false;
+addEventListener("keyup", ({key}) => {
+  switch (key) {
+    case " ":
+      console.log("aaaa")
       break;
     case "ArrowRight":
-      botoes.arrowRight.pressed = false;
+      botoes.arrowRight.pressed = false
       break;
     case "ArrowLeft":
-      botoes.arrowLeft.pressed = false;
+      botoes.arrowLeft.pressed = false
       break;
   }
 });
