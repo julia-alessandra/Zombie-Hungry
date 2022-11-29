@@ -1,9 +1,11 @@
+//Oi hasan, espero que ache esse codigo legal, nos finalmente aprendemos(de verdade) a mexer no canvas e é bem divertido(e assustador)
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
+//configuraçoes zombie
 class jogador {
   constructor() {
     this.velocidade = {
@@ -19,12 +21,14 @@ class jogador {
       this.width = imagem.width;
       this.height = imagem.height;
       this.posicao = {
+        //lugar onde ele vai estar
         x: canvas.width / 2,
         y: canvas.height / 2 + 200,
       };
     };
   }
   draw() {
+    //desenhar na tela
     if (this.imagem)
       c.drawImage(
         this.imagem,
@@ -38,12 +42,14 @@ class jogador {
   update() {
     if (this.imagem) {
       this.draw();
+      //para ele andar, nos mudamos a quantidade de velocidade
       this.posicao.x += this.velocidade.x;
     }
   }
 }
 
 class Projectile {
+  //particula que atira
   constructor({posicao, velocidade}){
     this.posicao = posicao
     this.velocidade = velocidade
@@ -51,14 +57,16 @@ class Projectile {
   }
 
   draw(){
-    c.beginPath()
-    c.arc(this.posicao.x, this.posicao.y, this.radius, 0, Math.PI*2)
-    c.fillStyle = 'black'
+    c.beginPath() //inicia um novo desenho
+    c.arc(this.posicao.x, this.posicao.y, this.radius, 0, Math.PI*2) //faz um arco circular no desenho do cerebro
+    c.fillStyle = 'red'
     c.fill()
-    c.closePath()
+    c.closePath()//fecha o desenho
   }
 
   up(){
+    //unidade popular
+    //brincadeira, é updade mesmo
     this.draw()
     this.posicao.x += this.velocidade.x
     this.posicao.y += this.velocidade.y
@@ -66,7 +74,8 @@ class Projectile {
 }
 
 class comida {
-  constructor() {
+  //apenas uma imagem!!!!
+  constructor({posicao}) {
     this.velocidade = {
       x: 0,
       y: 0
@@ -80,8 +89,8 @@ class comida {
       this.width = imagem.width;
       this.height = imagem.height;
       this.posicao = {
-        x: canvas.width / 2,
-        y: canvas.height /2 - 300,
+        x: posicao.x,
+        y: posicao.y,
       };
     };
   }
@@ -91,24 +100,69 @@ class comida {
         this.imagem,
         this.posicao.x,
         this.posicao.y,
-        this.width /6,
-        this.height/6
+        this.width /10,
+        this.height/10
       );
   }
 
-  update() {
+  update({velocidade}) {
     if (this.imagem) {
       this.draw();
-      this.posicao.x += this.velocidade.x;
-      this.posicao.y += this.velocidade.y;
+      this.posicao.x += velocidade.x;
+      this.posicao.y += velocidade.y;
+    }
+  }
+}
+
+class Conjunto {
+  //Conjunto de todas as imagens juntas
+  constructor(){
+    this.posicao = {
+      x: 0,
+      y:0
+    }
+    this.velocidade = {
+      x: 3,
+      y:0
+    }
+    this.almoco = []
+
+    //gera um numero aleatorio de colunas e linhas
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+    
+    let numeroColunas = getRandomInt(1, 5);
+    let numeroLinhas = getRandomInt(3, 8);
+
+    this.width = numeroColunas *90
+
+    for(let i =0; i<numeroLinhas; i++){
+      for(let j = 0; j<numeroColunas; j++)
+      this.almoco.push(new comida({posicao:{x:i*45, y:j*40}}))
+    }
+    console.log(this.almoco)
+  }
+  update(){
+    this.posicao.x += this.velocidade.x
+    this.posicao.y += this.velocidade.y
+
+    this.velocidade.y = 0
+    
+    if(this.posicao.x + this.width >= canvas.width || this.posicao.x <= 0){
+      this.velocidade.x = -this.velocidade.x
+      this.velocidade.y = 30
     }
   }
 }
 
 const zombie = new jogador();
 const projectiles = []
-const cerebro = new comida()
+const conjuntos = [new Conjunto]
 
+//andar
 const botoes = {
   arrowLeft: {
     pressed: false,
@@ -123,15 +177,22 @@ const botoes = {
 
 function animacao() {
   requestAnimationFrame(animacao);
-  c.fillStyle = 'green'
+  c.fillStyle = 'green'//cor de fundo
   c.fillRect(0, 0, canvas.width, canvas.height)
-  cerebro.update();
   zombie.update();
+
   projectiles.forEach(projectile => {
     projectile.up()
   })
-  
 
+  conjuntos.forEach(Conjunto => {
+    Conjunto.update()
+    Conjunto.almoco.forEach((cerebro) => {
+      cerebro.update({velocidade: Conjunto.velocidade})
+    })
+  })
+  
+//andar
 if(botoes.arrowLeft.pressed && zombie.posicao.x >= 0){
   zombie.velocidade.x = -5
 }
@@ -145,6 +206,7 @@ else{
 }
 animacao();
 
+//evento de andar
 addEventListener("keydown", ({key}) => {
   switch (key) {
     case " ":
