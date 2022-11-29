@@ -174,3 +174,46 @@ footer>button{
     
 }
 
+#fechar{
+   display: block;
+   right: 100px;
+}
+
+#ajuda {
+    right: 35%;;
+    font-size: 30px;
+    width: 30%;
+    text-align: center;
+    top: 15%;
+    padding-left: 1.5%;
+    padding-right: 2%;
+    padding-top: 0.5%;
+    padding-bottom: 1%;
+    font-size: 110%;
+    background-color:#BC8F8F;
+    margin: 1%;
+    border-radius: 3%;
+    box-shadow: 8px 8px 10px black;
+}
+
+#titulo-ajuda {
+    margin-bottom: 0%;
+    font-size: 150%;
+}
+
+#ranking {
+    right: 35%;;
+    font-size: 30px;
+    width: 30%;
+    text-align: center;
+    top: 25%;
+    padding-left: 1.5%;
+    padding-right: 2%;
+    padding-top: 0.5%;
+    padding-bottom: 1%;
+    font-size: 110%;
+    background-color:#BC8F8F;
+    margin: 1%;
+    border-radius: 3%;
+    box-shadow: 8px 8px 10px black;
+}
