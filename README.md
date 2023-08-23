@@ -6,8 +6,6 @@ Design criado pelo [canva](https://www.canva.com/design/DAFQdKBg6hg/UuxQvWdwhVdA
 
 [Mapa e desenhos do jogo](https://cypor.itch.io/12x12-rpg-tileset)
 
-[Curso de canvas e jogos feito para esse jogo](https://chriscourses.com/courses)
-
 Projeto criado para o Trabalho Prático 2 da disciplina de "laboratório de programação web" do CEFET-MG.
 
 Integrantes:
